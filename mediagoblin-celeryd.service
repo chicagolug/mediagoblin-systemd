@@ -11,7 +11,7 @@ Environment=MEDIAGOBLIN_CONFIG=/srv/mediagoblin.example.org/mediagoblin/mediagob
 ExecStart=/srv/mediagoblin.example.org/mediagoblin/bin/celery worker \
               --logfile=/var/log/mediagoblin/celery.log \
               --loglevel=INFO
-PIDFile=/var/run/mediagoblin/mediagoblin-celeryd.pid
+PIDFile=/run/mediagoblin/mediagoblin-celeryd.pid
 
 [Install]
 WantedBy=multi-user.target
