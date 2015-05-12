@@ -1,3 +1,6 @@
+# Set the WorkingDirectory, Environment and ExecStart values to match your environment.
+# If using Debian/Ubuntu, mkdir and chown are located in /bin/mkdir and /bin/chown, respectively.
+# If using Fedora/CehtOS/Red Hat, mkdir and chown are located in /usr/bin/mkdir and /usr/bin/chown, respectively.
 [Unit]
 Description=Mediagoblin
 
@@ -7,8 +10,9 @@ User=mediagoblin
 Group=mediagoblin
 Environment=CELERY_ALWAYS_EAGER=false
 WorkingDirectory=/srv/mediagoblin.example.org/mediagoblin
+# Start mg-paster process as root, then switch to mediagoblin user/group
 PermissionsStartOnly=true
-ExecStartPre=-/usr/bin/mkdir /var/run/mediagoblin
+ExecStartPre=-/usr/bin/mkdir -p /var/run/mediagoblin
 ExecStartPre=/usr/bin/chown -R mediagoblin:mediagoblin /var/run/mediagoblin/
 
 ExecStart=/srv/mediagoblin.example.org/mediagoblin/bin/paster serve \
