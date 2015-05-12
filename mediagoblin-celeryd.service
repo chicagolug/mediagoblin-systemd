@@ -9,7 +9,7 @@ Description=Mediagoblin Celeryd
 User=mediagoblin
 Group=mediagoblin
 Type=simple
-WorkingDirectory=/srv/mediagoblin.example.org/mediagoblni
+WorkingDirectory=/srv/mediagoblin.example.org/mediagoblin
 # Create directory for PID (if needed) and set ownership
 ExecStartPre=/usr/bin/mkdir -p /run/mediagoblin
 ExecStartPre=/usr/bin/chown -hR mediagoblin:mediagoblin /run/mediagoblin
