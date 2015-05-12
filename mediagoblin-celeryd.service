@@ -1,11 +1,19 @@
+# Set the WorkingDirectory, Environment and ExecStart values to match your environment.
+# If using Debian/Ubuntu, mkdir and chown are located in /bin/mkdir and /bin/chown, respectively.
+# If using Fedora/CehtOS/Red Hat, mkdir and chown are located in /usr/bin/mkdir and /usr/bin/chown, respectively.
+
 [Unit]
 Description=Mediagoblin Celeryd
 
 [Service]
 User=mediagoblin
 Group=mediagoblin
-Type=forking
-WorkingDirectory=/srv/mediagoblin.example.org/mediagoblin
+Type=simple
+WorkingDirectory=/srv/mediagoblin.example.org/mediagoblni
+# Create directory for PID (if needed) and set ownership
+ExecStartPre=/usr/bin/mkdir -p /run/mediagoblin
+ExecStartPre=/usr/bin/chown -hR mediagoblin:mediagoblin /run/mediagoblin
+# Celery process will run as the `mediagoblin` user ater start.
 Environment=MEDIAGOBLIN_CONFIG=/srv/mediagoblin.example.org/mediagoblin/mediagoblin_local.ini \
                 CELERY_CONFIG_MODULE=mediagoblin.init.celery.from_celery
 ExecStart=/srv/mediagoblin.example.org/mediagoblin/bin/celery worker \
